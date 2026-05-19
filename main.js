@@ -1,24 +1,26 @@
 function onLoad(_input, output) {
-  output.homeScore  = 0;
-  output.awayScore  = 0;
-  output.activeTeam = 0;
+  output.homeScore   = 0;
+  output.awayScore   = 0;
+  output.activeTeam  = 0;
+  output.indHome     = 1;
+  output.indAway     = 0;
 }
 
 function onEvent(_input, output, eventId) {
   switch (eventId) {
-    case 1: // UP court = +2
+    case 1:
       if (output.activeTeam == 0) { output.homeScore += 2; }
       else                        { output.awayScore += 2; }
       break;
-    case 2: // DOWN court = +3
+    case 2:
       if (output.activeTeam == 0) { output.homeScore += 3; }
       else                        { output.awayScore += 3; }
       break;
-    case 3: // UP long = +1
+    case 3:
       if (output.activeTeam == 0) { output.homeScore++; }
       else                        { output.awayScore++; }
       break;
-    case 4: // DOWN long = annuler
+    case 4:
       if (output.activeTeam == 0) {
         if (output.homeScore > 0) { output.homeScore--; }
       } else {
@@ -26,7 +28,15 @@ function onEvent(_input, output, eventId) {
       }
       break;
     case 5:
-      output.activeTeam = output.activeTeam == 0 ? 1 : 0;
+      if (output.activeTeam == 0) {
+        output.activeTeam = 1;
+        output.indHome = 0;
+        output.indAway = 1;
+      } else {
+        output.activeTeam = 0;
+        output.indHome = 1;
+        output.indAway = 0;
+      }
       break;
     case 6:
       output.homeScore = 0;
@@ -36,25 +46,7 @@ function onEvent(_input, output, eventId) {
 }
 
 function evaluate(_input, output) {
-  // Label equipe active
-  if (output.activeTeam == 0) {
-    setText('#active-label', 'HOME');
-  } else {
-    setText('#active-label', 'AWAY');
-  }
-
-  // Score HOME : version blanche visible si actif, sinon grise
-  if (output.activeTeam == 0) {
-    setStyle('#sc-home-on',  'visibility', 'VISIBLE');
-    setStyle('#sc-home-off', 'visibility', 'HIDDEN');
-    setStyle('#sc-away-on',  'visibility', 'HIDDEN');
-    setStyle('#sc-away-off', 'visibility', 'VISIBLE');
-  } else {
-    setStyle('#sc-home-on',  'visibility', 'HIDDEN');
-    setStyle('#sc-home-off', 'visibility', 'VISIBLE');
-    setStyle('#sc-away-on',  'visibility', 'VISIBLE');
-    setStyle('#sc-away-off', 'visibility', 'HIDDEN');
-  }
+  setText('#lbl-active', output.activeTeam == 0 ? 'HOME' : 'AWAY');
 }
 
 function getUserInterface() {

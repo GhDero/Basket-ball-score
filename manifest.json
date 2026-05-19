@@ -2,14 +2,16 @@
   "name": "Basketball Score",
   "version": "1.0",
   "author": "SuuntoPlus Community",
-  "description": "Track home & away score. UP+1, DOWN+2, long UP+3, NEXT=switch team.",
+  "description": "Track home & away score. UP+2, DOWN+3, longUP+1, tap screen=switch team.",
   "type": "feature",
   "usage": "workout",
   "modificationTime": 1747526400,
   "template": [{ "name": "t.html" }],
   "out": [
-    { "name": "homeScore",  "log": true, "shownName": "Home Score", "format": "Count_Fourdigits" },
-    { "name": "awayScore",  "log": true, "shownName": "Away Score", "format": "Count_Fourdigits" },
-    { "name": "activeTeam" }
+    { "name": "homeScore", "log": true, "shownName": "Home Score", "format": "Count_Fourdigits" },
+    { "name": "awayScore", "log": true, "shownName": "Away Score", "format": "Count_Fourdigits" },
+    { "name": "activeTeam" },
+    { "name": "indHome" },
+    { "name": "indAway" }
   ]
 }

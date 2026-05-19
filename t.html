@@ -6,43 +6,36 @@
     <div class="sp-title-text sp-t-m p-hc" style="top:3%;">Score</div>
 
     <!-- EQUIPE ACTIVE -->
-    <div id="active-label" class="sp-t-s sp-c-orange p-hc" style="top:17%;">HOME</div>
+    <div id="lbl-active" class="sp-t-s sp-c-orange p-hc" style="top:17%;">HOME</div>
 
     <!-- SEPARATEUR VERTICAL -->
-    <div class="cm-mid" style="top:22%;left:calc(50% - 1px);width:2px;height:38%;">|</div>
+    <div class="cm-mid" style="top:25%;left:calc(50% - 1px);width:2px;height:35%;">|</div>
 
     <!-- LABELS HOME / AWAY -->
     <div class="f-s cm-mid" style="top:23%;left:2%;width:46%;max-height:34px;text-align:center;">HOME</div>
     <div class="f-s cm-mid" style="top:23%;left:52%;width:46%;max-height:34px;text-align:center;">AWAY</div>
 
-    <!-- SCORE HOME ACTIF (blanc) -->
-    <div id="sc-home-on" class="f-num sp-d-xxl" style="top:31%;left:2%;width:46%;text-align:center;">
+    <!-- SCORES -->
+    <div class="f-num sp-d-xxl" style="top:31%;left:2%;width:46%;text-align:center;">
       <eval input="Zapp/{zapp_index}/Output/homeScore"
             outputFormat="Count_Threedigits" default="0" />
     </div>
-
-    <!-- SCORE HOME INACTIF (gris) -->
-    <div id="sc-home-off" class="f-num sp-d-xxl cm-mid" style="top:31%;left:2%;width:46%;text-align:center;visibility:hidden;">
-      <eval input="Zapp/{zapp_index}/Output/homeScore"
-            outputFormat="Count_Threedigits" default="0" />
-    </div>
-
-    <!-- SCORE AWAY ACTIF (blanc) -->
-    <div id="sc-away-on" class="f-num sp-d-xxl" style="top:31%;left:52%;width:46%;text-align:center;visibility:hidden;">
+    <div class="f-num sp-d-xxl" style="top:31%;left:52%;width:46%;text-align:center;">
       <eval input="Zapp/{zapp_index}/Output/awayScore"
             outputFormat="Count_Threedigits" default="0" />
     </div>
 
-    <!-- SCORE AWAY INACTIF (gris) -->
-    <div id="sc-away-off" class="f-num sp-d-xxl cm-mid" style="top:31%;left:52%;width:46%;text-align:center;">
-      <eval input="Zapp/{zapp_index}/Output/awayScore"
-            outputFormat="Count_Threedigits" default="0" />
+    <!-- INDICATEUR HOME — tiret orange si actif, espace si inactif -->
+    <div class="sp-c-orange sp-t-l" style="top:58%;left:2%;width:46%;text-align:center;">
+      <eval input="Zapp/{zapp_index}/Output/indHome"
+            outputFormat="keyValue 0=&nbsp;|1=-" default="&nbsp;" />
     </div>
 
-    <!-- HINT -->
-    <div class="f-s cm-mid p-hc" style="top:67%;">UP+2 · DOWN+3 · longUP+1</div>
-    <div class="f-s cm-mid p-hc" style="top:75%;">NEXT=switch · longDOWN=annul</div>
-    <div class="f-s cm-mid p-hc" style="top:83%;">longNEXT=reset</div>
+    <!-- INDICATEUR AWAY -->
+    <div class="sp-c-orange sp-t-l" style="top:58%;left:52%;width:46%;text-align:center;">
+      <eval input="Zapp/{zapp_index}/Output/indAway"
+            outputFormat="keyValue 0=&nbsp;|1=-" default="&nbsp;" />
+    </div>
 
     <!-- BOUTONS PHYSIQUES -->
     <userInput>
@@ -52,10 +45,13 @@
       <pushButton name="down"
         onClick="$.put('/Zapp/{zapp_index}/Event', 2, null, 'int32');"
         onLongPressStart="$.put('/Zapp/{zapp_index}/Event', 4, null, 'int32');" />
-      <pushButton name="next"
-        onClick="$.put('/Zapp/{zapp_index}/Event', 5, null, 'int32');"
-        onLongPressStart="$.put('/Zapp/{zapp_index}/Event', 6, null, 'int32');" />
     </userInput>
+
+    <!-- TAP ECRAN = switch equipe (UI2) -->
+    <:if test="{{ IS_UI2 }}">
+      <div style="top:17%;left:0%;width:100%;height:45%;"
+           onTap="$.put('/Zapp/{zapp_index}/Event', 5, null, 'int32');">-</div>
+    </:if>
 
   </div>
 </uiView>
