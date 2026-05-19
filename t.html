@@ -1,21 +1,19 @@
 <uiView>
   <div>
 
-    <!-- TITRE -->
     <div class="sp-title-bg" style="width:100%;height:15%;"></div>
-    <div class="sp-title-text sp-t-m p-hc" style="top:3%;">Score</div>
+    <div class="sp-title-text sp-t-m p-hc" style="top:3%;">Basketball</div>
 
-    <!-- EQUIPE ACTIVE -->
-    <div id="lbl-active" class="sp-t-s sp-c-orange p-hc" style="top:17%;">HOME</div>
+    <div class="sp-t-s sp-c-orange p-hc" style="top:17%;">
+      <eval input="Zapp/{zapp_index}/Output/indHome"
+            outputFormat="keyValue 0=AWAY|1=HOME" default="HOME" />
+    </div>
 
-    <!-- SEPARATEUR VERTICAL -->
-    <div class="cm-mid" style="top:25%;left:calc(50% - 1px);width:2px;height:35%;">|</div>
+    <div class="cm-mid" style="top:25%;left:calc(50% - 1px);width:2px;height:33%;">|</div>
 
-    <!-- LABELS HOME / AWAY -->
     <div class="f-s cm-mid" style="top:23%;left:2%;width:46%;max-height:34px;text-align:center;">HOME</div>
     <div class="f-s cm-mid" style="top:23%;left:52%;width:46%;max-height:34px;text-align:center;">AWAY</div>
 
-    <!-- SCORES -->
     <div class="f-num sp-d-xxl" style="top:31%;left:2%;width:46%;text-align:center;">
       <eval input="Zapp/{zapp_index}/Output/homeScore"
             outputFormat="Count_Threedigits" default="0" />
@@ -25,19 +23,16 @@
             outputFormat="Count_Threedigits" default="0" />
     </div>
 
-    <!-- INDICATEUR HOME — tiret orange si actif, espace si inactif -->
-    <div class="sp-c-orange sp-t-l" style="top:58%;left:2%;width:46%;text-align:center;">
+    <!-- INDICATEURS descendus a 70% pour eviter superposition avec les scores -->
+    <div class="sp-c-orange sp-t-l" style="top:70%;left:2%;width:46%;text-align:center;">
       <eval input="Zapp/{zapp_index}/Output/indHome"
-            outputFormat="keyValue 0=&nbsp;|1=-" default="&nbsp;" />
+            outputFormat="keyValue 0=&#x2009;|1=-" default="&#x2009;" />
     </div>
-
-    <!-- INDICATEUR AWAY -->
-    <div class="sp-c-orange sp-t-l" style="top:58%;left:52%;width:46%;text-align:center;">
+    <div class="sp-c-orange sp-t-l" style="top:70%;left:52%;width:46%;text-align:center;">
       <eval input="Zapp/{zapp_index}/Output/indAway"
-            outputFormat="keyValue 0=&nbsp;|1=-" default="&nbsp;" />
+            outputFormat="keyValue 0=&#x2009;|1=-" default="&#x2009;" />
     </div>
 
-    <!-- BOUTONS PHYSIQUES -->
     <userInput>
       <pushButton name="up"
         onClick="$.put('/Zapp/{zapp_index}/Event', 1, null, 'int32');"
@@ -47,9 +42,8 @@
         onLongPressStart="$.put('/Zapp/{zapp_index}/Event', 4, null, 'int32');" />
     </userInput>
 
-    <!-- TAP ECRAN = switch equipe (UI2) -->
     <:if test="{{ IS_UI2 }}">
-      <div style="top:17%;left:0%;width:100%;height:45%;"
+      <div style="top:17%;left:0%;width:100%;height:55%;"
            onTap="$.put('/Zapp/{zapp_index}/Event', 5, null, 'int32');">-</div>
     </:if>
 

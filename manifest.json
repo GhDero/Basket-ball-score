@@ -8,8 +8,8 @@
   "modificationTime": 1747526400,
   "template": [{ "name": "t.html" }],
   "out": [
-    { "name": "homeScore", "log": true, "shownName": "Home Score", "format": "Count_Fourdigits" },
-    { "name": "awayScore", "log": true, "shownName": "Away Score", "format": "Count_Fourdigits" },
+    { "name": "homeScore", "format": "Count_Fourdigits", "log": true, "shownName": "Home Score" },
+    { "name": "awayScore", "format": "Count_Fourdigits", "log": true, "shownName": "Away Score" },
     { "name": "activeTeam" },
     { "name": "indHome" },
     { "name": "indAway" }
