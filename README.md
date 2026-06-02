@@ -33,9 +33,11 @@ A SuuntoPlus sports app to track basketball scores directly from your Suunto wat
 | Button | Action |
 |--------|--------|
 | **UP** short press | +2 points (active team) |
-| **DOWN** short press | +3 points (active team) |
 | **UP** long press | +1 point — free throw (active team) |
+| **DOWN** short press | +3 points (active team) |
 | **DOWN** long press | Cancel last point |
+| **NEXT** long press | Reset all scores |
+| **Tap screen** | Switch active team |
 
 ### Touchscreen (UI2 watches only)
 

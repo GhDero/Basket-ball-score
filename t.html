@@ -40,6 +40,8 @@
       <pushButton name="down"
         onClick="$.put('/Zapp/{zapp_index}/Event', 2, null, 'int32');"
         onLongPressStart="$.put('/Zapp/{zapp_index}/Event', 4, null, 'int32');" />
+      <pushButton name="next"
+        onLongPressStart="$.put('/Zapp/{zapp_index}/Event', 6, null, 'int32');" />
     </userInput>
 
     <:if test="{{ IS_UI2 }}">

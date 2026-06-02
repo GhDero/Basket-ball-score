@@ -1,11 +1,11 @@
 {
   "name": "Basketball Score",
-  "version": "1.0",
-  "author": "SuuntoPlus Community",
-  "description": "Track home & away score. UP+2, DOWN+3, longUP+1, tap screen=switch team.",
+  "version": "1.1",
+  "author": "Ghislain Dérogis",
+  "description": "Track home & away score. UP+2, DOWN+3, longUP+1, tap screen=switch team, longNEXT=reset.",
   "type": "feature",
   "usage": "workout",
-  "modificationTime": 1747526400,
+  "modificationTime": 1748822400,
   "template": [{ "name": "t.html" }],
   "out": [
     { "name": "homeScore", "format": "Count_Fourdigits", "log": true, "shownName": "Home Score" },
